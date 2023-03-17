@@ -1,0 +1,19 @@
+create mvc project 
+	SignalRChat 
+	Add the SignalR client library
+		https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-7.0&tabs=visual-studio
+	Create a SignalR hub
+		create a Hubs folder.
+		In the Hubs folder, create the ChatHub class with the following code:
+
+
+
+		public class ChatHub : Hub
+		{
+			public async Task SendMessage(string user, string message)
+			{
+				await Clients.All.SendAsync("ReceiveMessage", user, message);
+			}
+		}
+add SignalR to services
+	builder.Services.AddSignalR();
